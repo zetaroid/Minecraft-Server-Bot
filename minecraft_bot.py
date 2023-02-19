@@ -13,9 +13,9 @@ bot = commands.Bot()
 globe_emoji = '🌐'
 x_emoji = '❌'
 people_emoji = '👥'
-server_ip = "localhost"
 channel_id = 1076687011827683358
-real_ip = str(os.getenv('MINECRAFT_IP'))
+#server_ip = "localhost"
+server_ip = str(os.getenv('MINECRAFT_IP'))
 
 @bot.event
 async def on_ready():
@@ -29,12 +29,7 @@ async def server_status_loop():
             status = server.status()
             online = True
         except:
-            server = JavaServer.lookup(real_ip)
-            try:
-                status = server.status()
-                online = True
-            except:
-                online = False
+            online = False
 
         channel = bot.get_channel(channel_id)
         if online:
@@ -52,12 +47,7 @@ async def status(ctx):
         status = server.status()
         online = True
     except:
-        server = JavaServer.lookup(real_ip)
-        try:
-            status = server.status()
-            online = True
-        except:
-            online = False
+        online = False
     if online:
         num_players = status.players.online
         minecraft_str = f"The server has {num_players} player(s) online."
@@ -71,7 +61,7 @@ async def status(ctx):
 
 @bot.slash_command(name='ip', description='Minecraft server IP address')
 async def status(ctx):
-    await ctx.send("`" + real_ip + "`")
+    await ctx.send("`" + server_ip + "`")
 
 
 bot.run(TOKEN)
