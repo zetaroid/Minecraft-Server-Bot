@@ -25,11 +25,11 @@ async def on_ready():
 async def server_status_loop():
     while True:
         server = JavaServer.lookup(server_ip)
-        #try:
-        status = server.status()
-        online = True
-        #except:
-        #online = False
+        try:
+            status = server.status()
+            online = True
+        except:
+            online = False
 
         channel = bot.get_channel(channel_id)
         if online:
@@ -43,11 +43,11 @@ async def server_status_loop():
 @bot.slash_command(name='status', description='Minecraft server status')
 async def status(ctx):
     server = JavaServer.lookup(server_ip)
-    #try:
-    status = server.status()
-    online = True
-    #except:
-    #online = False
+    try:
+        status = server.status()
+        online = True
+    except:
+        online = False
     if online:
         num_players = status.players.online
         minecraft_str = f"The server has {num_players} player(s) online."
