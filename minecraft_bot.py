@@ -14,8 +14,8 @@ globe_emoji = '🌐'
 x_emoji = '❌'
 people_emoji = '👥'
 channel_id = 1076687011827683358
-server_ip = "localhost"
-#server_ip = str(os.getenv('MINECRAFT_IP'))
+#server_ip = "localhost"
+server_ip = str(os.getenv('MINECRAFT_IP'))
 
 @bot.event
 async def on_ready():
