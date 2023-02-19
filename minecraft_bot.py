@@ -40,28 +40,28 @@ async def server_status_loop():
         await sleep(60)
 
 
-# @bot.slash_command(name='status', description='Minecraft server status')
-# async def status(ctx):
-#     server = JavaServer.lookup(server_ip)
-#     try:
-#         status = server.status()
-#         online = True
-#     except:
-#         online = False
-#     if online:
-#         num_players = status.players.online
-#         minecraft_str = f"The server has {num_players} player(s) online."
-#         query = server.query()
-#         if num_players > 0:
-#             minecraft_str += "\n" + f"The server has the following players online: {', '.join(query.players.names)}"
-#         await ctx.send("```" + minecraft_str + "```")
-#     else:
-#         await ctx.send("The server is offline.")
-#
-#
-# @bot.slash_command(name='ip', description='Minecraft server IP address')
-# async def status(ctx):
-#     await ctx.send("`" + server_ip + "`")
+@bot.slash_command(name='status', description='Minecraft server status')
+async def status(ctx):
+    server = JavaServer.lookup(server_ip)
+    try:
+        status = server.status()
+        online = True
+    except:
+        online = False
+    if online:
+        num_players = status.players.online
+        minecraft_str = f"The server has {num_players} player(s) online."
+        query = server.query()
+        if num_players > 0:
+            minecraft_str += "\n" + f"The server has the following players online: {', '.join(query.players.names)}"
+        await ctx.send("```" + minecraft_str + "```")
+    else:
+        await ctx.send("The server is offline.")
+
+
+@bot.slash_command(name='ip', description='Minecraft server IP address')
+async def status(ctx):
+    await ctx.send("`" + server_ip + "`")
 
 
 bot.run(TOKEN)
