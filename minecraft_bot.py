@@ -52,7 +52,12 @@ async def status(ctx):
         status = server.status()
         online = True
     except:
-        online = False
+        server = JavaServer.lookup(real_ip)
+        try:
+            status = server.status()
+            online = True
+        except:
+            online = False
     if online:
         num_players = status.players.online
         minecraft_str = f"The server has {num_players} player(s) online."
