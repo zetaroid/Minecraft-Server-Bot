@@ -29,7 +29,12 @@ async def server_status_loop():
             status = server.status()
             online = True
         except:
-            online = False
+            server = JavaServer.lookup(real_ip)
+            try:
+                status = server.status()
+                online = True
+            except:
+                online = False
 
         channel = bot.get_channel(channel_id)
         if online:
