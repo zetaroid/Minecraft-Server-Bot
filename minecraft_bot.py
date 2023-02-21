@@ -37,7 +37,7 @@ async def server_status_loop():
         else:
             await channel.edit(name="Minecraft: " + x_emoji)
 
-        await sleep(60)
+        await sleep(350)
 
 
 # @bot.slash_command(name='status', description='Minecraft server status')
